@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моніторинг Теплового Пункту</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Тепловий пункт багатоповерхівки</h1>
+        <div id="last-update" role="timer" aria-live="polite">Останнє оновлення: --:--:--</div>
+    </header>
+
+    <main>
+        <section class="controls">
+            <button id="refresh-btn" aria-label="Оновити дані вручну">Оновити дані</button>
+            <div class="status-indicator">Автооновлення: <span id="auto-status">Увімкнено</span></div>
+        </section>
+
+        <section class="grid-container" id="dashboard">
+            <div class="card" id="temp-supply-card">
+                <h3>Температура подачі</h3>
+                <div class="value"><span id="temp-supply">0</span> °C</div>
+                <div class="status-dot"></div>
+            </div>
+            <div class="card" id="temp-return-card">
+                <h3>Температура зворотки</h3>
+                <div class="value"><span id="temp-return">0</span> °C</div>
+                <div class="status-dot"></div>
+            </div>
+            <div class="card" id="flow-card">
+                <h3>Витрата теплоносія</h3>
+                <div class="value"><span id="flow">0</span> м³/год</div>
+                <div class="status-dot"></div>
+            </div>
+            <div class="card" id="power-card">
+                <h3>Теплова потужність</h3>
+                <div class="value"><span id="power">0</span> кВт</div>
+                <div class="status-dot"></div>
+            </div>
+            <div class="card" id="valve-card">
+                <h3>Стан клапанів</h3>
+                <div class="value"><span id="valve-status">Закрито</span></div>
+            </div>
+            <div class="card" id="dhw-card">
+                <h3>Температура ГВП</h3>
+                <div class="value"><span id="temp-dhw">0</span> °C</div>
+            </div>
+        </section>
+
+        <section class="visuals">
+            <div class="chart-container">
+                <canvas id="historyChart"></canvas>
+            </div>
+            <div class="history-log">
+                <h3>Історія (Спожита енергія)</h3>
+                <ul id="log-list"></ul>
+                <button id="export-btn">Експорт в CSV</button>
+            </div>
+        </section>
+    </main>
+
+    <audio id="alert-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
